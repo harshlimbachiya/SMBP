@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+
+
+{% block head_title %}
+HOME-{{block.super}}
+{% endblock head_title %} 
+
+{% block content %}
+{% include 'snippets/Welcome-user-msg.html' %}
+
+
+ Page visits: {{queryset}}
+ <h1>total_visit_count : {{ total_visit_count}}</h1>
+ <h1> percent : {{percent}}</h1>
+{% endblock content %}
