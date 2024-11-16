@@ -17,11 +17,15 @@ def about_view(request,*args, **kwargs):
     qs= PageVisit.objects.all()
     page_qs= PageVisit.objects.filter(path=request.path)
     print(this_dir)
+    try:
+        percent = page_qs.count() * 100.0 / qs.count()
+    except:
+        percent =0 
     my_title= "home page"
     my_context={  
         "page_title": my_title,
         "queryset" : page_qs.count(),
-        "percent": page_qs.count() * 100.0 / qs.count(),
+        "percent": percent,
         "total_visit_count":qs.count(),
     }
     path= request.path
