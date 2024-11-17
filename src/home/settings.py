@@ -71,8 +71,15 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "commando",
     "visits",
+    #third-party-all
+    'allauth_ui',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    "widget_tweaks",
+    "slippers",
 ]
-
+ALLAUTH_UI_THEME = "light"
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
@@ -81,6 +88,7 @@ MIDDLEWARE = [
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
+    "allauth.account.middleware.AccountMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
@@ -131,6 +139,8 @@ if DATABASE_URL is not None:
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
+
+
 AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
@@ -146,7 +156,24 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+#django-allauth-authentication-config
+ACCOUNT_AUTHENTICATION_METHOD="email"
+ACCOUNT_EMAIL_REQUIRED=True
 
+ACCOUNT_EMAIL_VERIFICATION="mandatory"
+AUTHENTICATION_BACKENDS = [
+   
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by email
+    'allauth.account.auth_backends.AuthenticationBackend',
+    
+]
+
+
+
+SOCIALACCOUNT_PROVIDERS = { }
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
